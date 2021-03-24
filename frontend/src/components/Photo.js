@@ -3,6 +3,7 @@ import { Card } from 'react-bootstrap'
 import { BASE_API_URL } from '../utils/constants'
 
 const Photo = ({ id }) => {
+    console.log(id)
     return (
         <Card className="photo">
         <Card.Img

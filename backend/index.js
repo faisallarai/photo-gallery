@@ -48,14 +48,11 @@ app.post('/api/photos', async (req, res) => {
             upload(req, res, (err) => { 
   
                 if (err instanceof multer.MulterError) {
-                    console.log('m', err.message, req.file)
                     reject(err)
                 } else if (err) {
-                    console.log('g', err.message, req.file)
                     reject(err)
                 }
                 else { 
-                    console.log('r', req.file)
                     resolve(req.file)
                 } 
             }) 
@@ -72,19 +69,16 @@ app.post('/api/photos', async (req, res) => {
             })
             
             if (photo) {
-                console.log('photo', photo)
                 res.json({
                     id: photo.id
                 })
             }
         }
     } catch (error) {
-        console.log('uploadsync err', error.message)
         res.status(500).send(error.message)
     }
     
 }, (error) => {
-    console.log('final catch', error.message)
     res.status(500).send(error.message)
 })
 
@@ -103,9 +97,6 @@ app.get('/api/photos', async (req, res) => {
         const photos = await Photo.findAndCountAll({
             attributes: ['id'],
             where: condition,
-            order: [
-                ['createdAt', 'ASC'],
-            ],
             offset: offset,
             limit: limit
         })

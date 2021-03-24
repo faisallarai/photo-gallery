@@ -31,8 +31,9 @@ const UploadForm = () => {
                 
                 setTimeout(() => {
                     dispatch(resetNotification())
-                    setState(null)
-                    photoInputRef.current.value = ''
+                    console.log('ref', photoInputRef)
+                    if (photoInputRef.current !== null)
+                        photoInputRef.current.value = ''
                 }, 3000);
             })
         } catch (error) {

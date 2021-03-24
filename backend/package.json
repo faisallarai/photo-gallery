@@ -20,6 +20,8 @@
     "sequelize-cli": "^6.2.0"
   },
   "scripts": {
-    "start": "nodemon start"
+    "start": "nodemon start",
+    "db:create": "sequelize db:create",
+    "db:migrate": "sequelize db:migrate"
   }
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import CustomPagination from './Pagination'
 import Photo from './Photo'
 
 const Gallery = () => {
@@ -8,39 +9,37 @@ const Gallery = () => {
     const history = useHistory()
 
     useEffect(() => {
-        console.log('beg', photos)
         setIsLoading(true)
     }, [])
 
-    const {totalItems, photos, currentPage, totalPages} = useSelector(state => state.photos)
+    const {totalItems, ids, currentPage, totalPages} = useSelector(state => state.photos)
 
     useEffect(() => {
-        console.log('when photos changes', photos)
-        if(photos) {
+        console.log('when photos changes', ids)
+        if(ids) {
             setIsLoading(false)
         }
-
-    }, [photos])
-
+    }, [ids])
 
 
     return (
 
         <>
-        <div className="photos-list">
         <div>
             <h3 onClick={() => history.push('/')}>Back</h3>
         </div>
+        <div className="photos-list">
             {isLoading ? <div className="loading-msg centered-message"> Loading ...</div> 
-            : typeof photos !== 'undefined' ? 
-            photos.map(photo => {
+            : typeof ids !== 'undefined' ? 
+            ids.map((data, index) => {
                 return (
-                    <Photo key={photo.id} id={photo.id} />
+                    <Photo key={index} id={data.id} />
                 )
             })
             : null
             }
         </div>
+        <CustomPagination totalItems={totalItems} totalPages={totalPages} currentPage={currentPage} />
         </>
     )
 }

@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { BASE_API_URL } from '../utils/constants'
 
-const getAll = async () => {
-    const response = await axios.get(BASE_API_URL)
+const getAll = async (page=0, size=5) => {
+    const response = await axios.get(`${BASE_API_URL}?page=${page}&size=${size}`)
     return response.data
 }
 

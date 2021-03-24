@@ -3,12 +3,14 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import photosReducer from './reducers/photos'
 import notificationsReducer from './reducers/notifications'
+import pagesReducer from './reducers/pages'
 import LogRocket from 'logrocket';
 
 
 const reducer = combineReducers({
     photos: photosReducer,
-    notifications: notificationsReducer
+    notifications: notificationsReducer,
+    pages: pagesReducer,
 })
 
 const store = createStore(
@@ -16,9 +18,7 @@ const store = createStore(
     
     composeWithDevTools(
         applyMiddleware(
-            thunk,
-            LogRocket.reduxMiddleware(),
-        )
+            thunk        )
     )
 )
 

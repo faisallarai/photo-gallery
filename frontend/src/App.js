@@ -21,7 +21,7 @@ const App = () => {
       <Notification />
       <Switch>
         <Route path="/gallery" component={Gallery} />
-        <Route path="/" component={Home} />
+        <Route path="/" component={Home} exact />
       </Switch>
     </>
   )
