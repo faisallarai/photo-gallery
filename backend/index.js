@@ -67,15 +67,15 @@ app.post('/api/photos', async (req, res) => {
         if(response) {
             const photo = await Photo.create({
                 name: response.originalname,
-                //type: response.mimetype,
-                // image: response.buffer
+                type: response.mimetype,
+                image: response.buffer
             })
             
             if (photo) {
                 console.log('photo', photo)
-                res.json(photo)
-            } else {
-                console.log('no photo', photo)
+                res.json({
+                    id: photo.id
+                })
             }
         }
     } catch (error) {
@@ -101,7 +101,7 @@ app.get('/api/photos', async (req, res) => {
         const { offset, limit } = getPagination(page, size)
 
         const photos = await Photo.findAndCountAll({
-            attributes: ['id', 'image'],
+            attributes: ['id'],
             where: condition,
             order: [
                 ['createdAt', 'ASC'],

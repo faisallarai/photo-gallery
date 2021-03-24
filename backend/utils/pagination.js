@@ -9,13 +9,13 @@ const getPagination = (page, size) => {
 }
 
 const getPaginationData = (data, page, size) => {
-    const { count: totalItems, rows: photos} = data
+    const { count: totalItems, rows: photos } = data
     const currentPage = page ? +page : 0 
     const totalPages = Math.ceil(totalItems / size)
 
     return {
         totalItems,
-        photos,
+        ids: photos,
         currentPage,
         totalPages
     }
